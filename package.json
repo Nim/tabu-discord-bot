@@ -1,14 +1,16 @@
 {
   "name": "discordbot",
-  "version": "1.0.0",
+  "version": "1.5.0",
   "description": "discord bot, as per https://discordjs.guide",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "dotenvx run -- node index.js",
+    "deploy-commands": "dotenvx run -- node deploy-commands.js",
+    "delete-commands": "dotenvx run -- node delete-commands.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Nim/discordBot.git"
+    "url": "git+https://github.com/tabu-hr/tabu-discord-bot.git"
   },
   "keywords": [
     "discord",
@@ -18,13 +20,14 @@
   "author": "Nimesin",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Nim/discordBot/issues"
+    "url": "https://github.com/tabu-hr/tabu-discord-bot/issues"
   },
-  "homepage": "https://github.com/Nim/discordBot#readme",
+  "homepage": "https://github.com/tabu-hr/tabu-discord-bot#readme",
   "dependencies": {
-    "axios": "^1.7.7",
+    "axios": "^1.7.73",
     "dayjs": "^1.11.13",
-    "discord.js": "^14.16.3"
+    "discord.js": "^14.16.3",
+    "dotenvx": "^1.0.0"
   },
   "devDependencies": {
     "eslint": "^9.12.0"

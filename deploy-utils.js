@@ -13,11 +13,15 @@ async function deployCommands(token, clientId, guildId = null) {
 
 		for (const file of commandFiles) {
 			const filePath = path.join(commandsPath, file);
-			const command = require(filePath);
-			if ('data' in command && 'execute' in command) {
-				commands.push(command.data.toJSON());
-			} else {
-				console.log(`[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`);
+			try {
+				const command = require(filePath);
+				if ('data' in command && 'execute' in command) {
+					commands.push(command.data.toJSON());
+				} else {
+					console.log(`[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`);
+				}
+			} catch (error) {
+				console.error(`Error loading command at ${filePath}:`, error);
 			}
 		}
 	}
@@ -25,7 +29,12 @@ async function deployCommands(token, clientId, guildId = null) {
 	const rest = new REST().setToken(token);
 	const route = guildId ? Routes.applicationGuildCommands(clientId, guildId) : Routes.applicationCommands(clientId);
 
-	await rest.put(route, { body: commands });
+	try {
+		await rest.put(route, { body: commands });
+		console.log('Successfully deployed commands.');
+	} catch (error) {
+		console.error('Error deploying commands:', error);
+	}
 }
 
 module.exports = { deployCommands };
