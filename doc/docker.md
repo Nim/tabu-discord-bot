@@ -2,12 +2,14 @@
 
 1. Build the Docker image:
    ```
-   docker build -t discord-bot .
+   docker build -t tabu-discord-bot .
    ```
 
-2. Run the Docker container:
+2. Create .env and .env.keys
+
+3. Run the Docker container:
    ```
-   docker run -d discord-bot
+   docker run -d tabu-discord-bot
    ```
 
-3. The bot will be running inside the Docker container.
+4. The bot will be running inside the Docker container.
