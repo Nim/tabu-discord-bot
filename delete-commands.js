@@ -7,10 +7,14 @@ const guildId = process.env.GUILD_ID;
 const rest = new REST().setToken(token);
 
 // Delete all guild-specific commands
-rest.put(Routes.applicationGuildCommands(clientId, guildId), { body: [] })
+const guilds = guildId.split(",");
+for(let guild in guilds)
+{
+	console.log(guilds[guild]);
+	rest.put(Routes.applicationGuildCommands(clientId, guilds[guild]), { body: [] })
 	.then(() => console.log('Successfully deleted all guild commands.'))
 	.catch(error => console.error('Error deleting guild commands:', error));
-
+}
 // Delete all global commands
 rest.put(Routes.applicationCommands(clientId), { body: [] })
 	.then(() => console.log('Successfully deleted all application commands.'))

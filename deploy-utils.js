@@ -39,7 +39,7 @@ async function deployCommands(token, clientId, guildId = null) {
 		}
 		else
 		{
-			guilds = guildId.split(",");
+			const guilds = guildId.split(",");
 			for(let guild in guilds)
 			{
 				console.log(guilds[guild]);
