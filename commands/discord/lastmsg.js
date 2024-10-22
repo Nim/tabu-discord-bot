@@ -16,14 +16,13 @@ module.exports = {
 				if (typeof channel.messages !== 'undefined' && channel.lastMessageId !== null) {
 					if (interaction.channel.permissionsFor(interaction.guild.members.me).has('ViewChannel', true)) {
 						try {
-							const messages = await channel.messages.fetch({ limit: 1 });
-							const lastMessage = messages.first();
+							const lastMessage = await channel.messages.fetch({ message: channel.lastMessageId });
 							const theDate = new Date(lastMessage.createdTimestamp);
 							const keyDate = `${theDate.getDate()}.${theDate.getMonth() + 1}.${theDate.getFullYear()}`;
 							const m = `${keyDate}: ${lastMessage.guild.name}: #${lastMessage.channel.name}`;
 							msg.push(m);
 						} catch (err) {
-							console.error(`Error fetching messages from channel ${channel.name}:`, err);
+							console.error(`Error fetching messages from channel ${channel.name}:`/* , err */);
 							msg.push(`Error fetching messages from channel ${channel.name}.`);
 						}
 					} else {
