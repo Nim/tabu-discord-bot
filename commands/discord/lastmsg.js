@@ -6,9 +6,9 @@ module.exports = {
 		.setDescription('Last messages on server.')
 		.addBooleanOption(option =>
 			option.setName('showErrors')
-			.setDescription('Show errors')
-			.setRequired(false)),
-
+				.setDescription('Show errors')
+				.setRequired(false)
+			),
 	async execute(interaction) {
 		let msg = [];
 		const showErrors = interaction.options.getBoolean('showErrors') ?? false;
