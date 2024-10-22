@@ -1,10 +1,11 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const { REST, Routes } = require('discord.js');
+const config = require("./config.json");
 
 async function deployCommands(token, clientId, guildId = null) {
 	const commands = [];
-	const foldersPath = path.join(__dirname, 'commands');
+	const foldersPath = path.join(__dirname, config.commandsFolder);
 	const commandFolders = fs.readdirSync(foldersPath);
 
 	for (const folder of commandFolders) {
@@ -27,11 +28,25 @@ async function deployCommands(token, clientId, guildId = null) {
 	}
 
 	const rest = new REST().setToken(token);
-	const route = guildId ? Routes.applicationGuildCommands(clientId, guildId) : Routes.applicationCommands(clientId);
-
+	let route = null;
+	
 	try {
-		await rest.put(route, { body: commands });
-		console.log('Successfully deployed commands.');
+		if(null === guildId)
+		{
+			route = Routes.applicationCommands(clientId);
+			await rest.put(route, { body: commands });
+			console.log('Successfully deployed commands.');
+		}
+		else
+		{
+			guilds = guildId.split(",");
+			for(let guild in guilds)
+			{
+				route = Routes.applicationGuildCommands(clientId, guild);
+				await rest.put(route, { body: commands });
+			}
+		}
+		
 	} catch (error) {
 		console.error('Error deploying commands:', error);
 	}
