@@ -42,7 +42,7 @@ async function deployCommands(token, clientId, guildId = null) {
 			guilds = guildId.split(",");
 			for(let guild in guilds)
 			{
-				route = Routes.applicationGuildCommands(clientId, guild);
+				route = Routes.applicationGuildCommands(clientId, guilds[guild]);
 				await rest.put(route, { body: commands });
 			}
 		}
