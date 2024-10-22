@@ -24,10 +24,10 @@ module.exports = {
 							msg.push(m);
 						} catch (err) {
 							console.error(`Error fetching messages from channel ${channel.name}:`, err);
-							await interaction.editReply(`Error fetching messages from channel ${channel.name}.`);
+							msg.push(`Error fetching messages from channel ${channel.name}.`);
 						}
 					} else {
-						await interaction.editReply(`No permission to view messages from channel ${channel.name}.`);
+						msg.push(`No permission to view messages from channel ${channel.name}.`);
 					}
 				}
 			}
@@ -35,7 +35,8 @@ module.exports = {
 			await interaction.editReply(`Last messages on this server:\n${msg.join("\n")}`);
 		} catch (err) {
 			console.error('Error executing lastmsg command:', err);
-			await interaction.editReply('An error occurred while fetching the last messages.');
+			msg.push('An error occurred while fetching the last messages.');
+			await interaction.editReply(`${msg.join("\n")}`);
 		}
 	},
 };
