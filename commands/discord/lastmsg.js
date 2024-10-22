@@ -23,7 +23,7 @@ module.exports = {
 							msg.push(m);
 						} catch (err) {
 							console.error(`Error fetching messages from channel ${channel.name}:`/* , err */);
-							msg.push(`Error fetching messages from channel ${channel.name}.`);
+							// msg.push(`Error fetching messages from channel ${channel.name}.`);
 						}
 					} else {
 						msg.push(`No permission to view messages from channel ${channel.name}.`);
