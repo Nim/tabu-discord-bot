@@ -14,16 +14,20 @@ module.exports = {
 			const channels = await interaction.guild.channels.fetch();
 			for (const channel of channels.values()) {
 				if (typeof channel.messages !== 'undefined' && channel.lastMessageId !== null) {
-					try {
-						const messages = await channel.messages.fetch({ limit: 1 });
-						const lastMessage = messages.first();
-						const theDate = new Date(lastMessage.createdTimestamp);
-						const keyDate = `${theDate.getDate()}.${theDate.getMonth() + 1}.${theDate.getFullYear()}`;
-						const m = `${keyDate}: ${lastMessage.guild.name}: #${lastMessage.channel.name}`;
-						msg.push(m);
-					} catch (err) {
-						console.error(`Error fetching messages from channel ${channel.name}:`, err);
-						await interaction.editReply(`Error fetching messages from channel ${channel.name}.`);
+					if (interaction.channel.permissionsFor(interaction.guild.members.me).has('ViewChannel', true)) {
+						try {
+							const messages = await channel.messages.fetch({ limit: 1 });
+							const lastMessage = messages.first();
+							const theDate = new Date(lastMessage.createdTimestamp);
+							const keyDate = `${theDate.getDate()}.${theDate.getMonth() + 1}.${theDate.getFullYear()}`;
+							const m = `${keyDate}: ${lastMessage.guild.name}: #${lastMessage.channel.name}`;
+							msg.push(m);
+						} catch (err) {
+							console.error(`Error fetching messages from channel ${channel.name}:`, err);
+							await interaction.editReply(`Error fetching messages from channel ${channel.name}.`);
+						}
+					} else {
+						await interaction.editReply(`No permission to view messages from channel ${channel.name}.`);
 					}
 				}
 			}
