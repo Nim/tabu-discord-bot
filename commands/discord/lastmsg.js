@@ -1,14 +1,16 @@
 const { SlashCommandBuilder } = require('discord.js');
 
+const data = new SlashCommandBuilder()
+	.setName('lastmsg')
+	.setDescription('Last messages on server.')
+	.addBooleanOption(option =>
+		option.setName('showErrors')
+			.setDescription('Show errors')
+			.setRequired(false));
+
 module.exports = {
-	data: new SlashCommandBuilder()
-		.setName('lastmsg')
-		.setDescription('Last messages on server.')
-		.addBooleanOption(option =>
-			option.setName('showErrors')
-				.setDescription('Show errors')
-				.setRequired(false)
-			),
+	cooldown: 5,
+	data: data,
 	async execute(interaction) {
 		let msg = [];
 		const showErrors = interaction.options.getBoolean('showErrors') ?? false;
