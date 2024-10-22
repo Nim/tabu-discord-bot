@@ -4,6 +4,9 @@ FROM node:18
 # Set the working directory in the container
 WORKDIR /app
 
+# Install the dotenvx package globally
+RUN curl -sfS https://dotenvx.sh/install.sh | sh
+
 # Copy the package.json and package-lock.json files to the container
 COPY package*.json ./
 
@@ -11,7 +14,7 @@ COPY package*.json ./
 RUN npm install
 
 # Install the dotenvx package globally
-RUN npm install -g dotenvx
+##RUN npm install -g dotenvx
 
 # Copy the rest of the application code to the container
 COPY . .
