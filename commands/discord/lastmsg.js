@@ -31,7 +31,7 @@ module.exports = {
 							const m = `${keyDate}: ${lastMessage.guild.name}: #${lastMessage.channel.name}`;
 							msg.push(m);
 						} catch (err) {
-							console.error(`Error fetching messages from channel ${channel.name}:`, err);
+							console.error(`Error fetching messages from channel ${channel.name}:`/*, err*/);
 							if(showErrors) msg.push(`Error fetching messages from channel ${channel.name}.`);
 						}
 					} else {
