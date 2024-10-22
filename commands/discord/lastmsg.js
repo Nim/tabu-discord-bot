@@ -3,8 +3,9 @@ const { SlashCommandBuilder } = require('discord.js');
 const data = new SlashCommandBuilder()
 	.setName('lastmsg')
 	.setDescription('Last messages on server.')
-	.addBooleanOption(option =>
-		option.setName('showErrors')
+	.addBooleanOption((option) =>
+		option
+			.setName('showErrors')
 			.setDescription('Show errors')
 			.setRequired(false));
 
