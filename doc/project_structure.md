@@ -1,0 +1,24 @@
+# Project Structure
+
+- `commands/`: Contains the command files organized into categories.
+  - `bot/`: Contains bot-related commands.
+    - `reload.js`: Reloads a command.
+  - `discord/`: Contains Discord-related commands.
+    - `help.js`: Lists all available commands.
+    - `lastmsg.js`: Fetches the last messages from all channels in a server.
+    - `server.js`: Provides information about the server.
+    - `user.js`: Provides information about the user.
+  - `fun/`: Contains fun commands.
+    - `echo.js`: Echoes back the user's input.
+    - `ping.js`: Replies with "Pong!" and includes the websocket heartbeat latency.
+- `events/`: Contains the event handler files.
+  - `interactionCreate.js`: Handles interactions.
+  - `ready.js`: Handles the bot's readiness.
+- `index.js`: The main entry point for the bot.
+- `deploy-utils.js`: Utility functions for deploying commands.
+- `deploy-commands.js`: Script to deploy commands to a specific guild.
+- `deploy-global-commands.js`: Script to deploy commands globally.
+- `delete-commands.js`: Script to delete all commands.
+- `.gitignore`: Specifies files and directories to be ignored by Git.
+- `package.json`: Contains project metadata, dependencies, and scripts.
+- `README.md`: This file.
