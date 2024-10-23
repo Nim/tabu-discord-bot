@@ -2,8 +2,8 @@
 
 1. Clone the repository:
    ```
-   git clone https://github.com/Nim/discordBot.git
-   cd discordBot
+   git clone https://github.com/tabu-hr/tabu-discord-bot.git
+   cd tabu-discord-bot
    ```
 
 2. Install dependencies:
