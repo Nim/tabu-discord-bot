@@ -11,6 +11,8 @@
   - `fun/`: Contains fun commands.
     - `echo.js`: Echoes back the user's input.
     - `ping.js`: Replies with "Pong!" and includes the websocket heartbeat latency.
+  - `api/`: Contains API-related commands.
+    - `check.js`: Checks if a user email exists by making a POST request to an external API.
 - `events/`: Contains the event handler files.
   - `interactionCreate.js`: Handles interactions.
   - `ready.js`: Handles the bot's readiness.
