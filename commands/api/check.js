@@ -1,8 +1,5 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const axios = require('axios');
-const dotenv = require('dotenv');
-
-dotenv.config();
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -14,10 +11,13 @@ module.exports = {
         .setRequired(true)),
   async execute(interaction) {
     const email = interaction.options.getString('email');
-    const apiUrl = process.env.API_URL;
+    const apiUrl = process.env.API_URL+"user/check";
 
     try {
-      const response = await axios.post(apiUrl+"user/check", { email }, {
+			await interaction.deferReply();
+			await interaction.editReply(`Fetching data...`);
+
+      const response = await axios.post(apiUrl, { email }, {
         headers: {
           'Access-Control-Allow-Origin': '*',
           'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
@@ -25,14 +25,14 @@ module.exports = {
         },
       });
 
-      if (response.data.exists) {
-        await interaction.reply(`The email ${email} exists.`);
+      if (response.data.response.exists) {
+        await interaction.editReply(`The email ${email} exists. Unique_id is ${response.data.response.name}`);
       } else {
-        await interaction.reply(`The email ${email} does not exist.`);
+        await interaction.editReply(`The email ${email} does not exist.`);
       }
     } catch (error) {
       console.error(error);
-      await interaction.reply('An error occurred while checking the email.');
+      await interaction.editReply('An error occurred while checking the email.');
     }
   },
 };
