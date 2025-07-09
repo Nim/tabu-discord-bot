@@ -1,8 +1,9 @@
 const { REST, Routes } = require('discord.js');
 
-const token = process.env.DISCORD_TOKEN;
-const clientId = process.env.CLIENT_ID;
-const guildId = process.env.GUILD_ID;
+const config = require('./config.js');
+const token = config.discordToken;
+const clientId = config.clientId;
+const guildId = config.guildId;
 
 const rest = new REST().setToken(token);
 

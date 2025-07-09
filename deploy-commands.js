@@ -1,9 +1,10 @@
 const { deployCommands } = require('./deploy-utils');
 
-const token = process.env.DISCORD_TOKEN;
+const config = require('./config.js');
+const token = config.discordToken;
 
-const clientId = process.env.CLIENT_ID;
-const guildId = process.env.GUILD_ID;
+const clientId = config.clientId;
+const guildId = config.guildId;
 
 (async () => {
 	try {

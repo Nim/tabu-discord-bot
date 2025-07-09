@@ -1,5 +1,6 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const axios = require('axios');
+const config = require('./config.js');
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -11,11 +12,11 @@ module.exports = {
         .setRequired(true)),
   async execute(interaction) {
     const email = interaction.options.getString('email');
-    const apiUrl = process.env.API_URL+"user/check";
+    const apiUrl = config.apiUrl + "user/check";
 
     try {
-			await interaction.deferReply();
-			await interaction.editReply(`Fetching data...`);
+      await interaction.deferReply();
+      await interaction.editReply(`Fetching data...`);
 
       const response = await axios.post(apiUrl, { email }, {
         headers: {

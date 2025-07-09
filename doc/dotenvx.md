@@ -4,7 +4,7 @@ To use the `dotenvx` package to encrypt the `.env` file, follow these steps:
 
 1. Install the `dotenvx` package:
    ```
-   npm install dotenvx
+   curl -fsS https://dotenvx.sh | sudo sh
    ```
 
 2. Create a `.env` file in the root directory and add your environment variables.

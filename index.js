@@ -1,9 +1,18 @@
-//require('dotenv').config()
 const fs = require('node:fs');
 const path = require('node:path');
 const { Client, Collection, GatewayIntentBits } = require('discord.js');
-const config = require("./config.json");
-const token = process.env.DISCORD_TOKEN;
+const passport = require('passport');
+const config = require('./config.js');
+const token = config.discordToken;
+
+// Initialize passport
+passport.serializeUser((user, done) => {
+  done(null, user);
+});
+
+passport.deserializeUser((obj, done) => {
+  done(null, obj);
+});
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
@@ -50,7 +59,7 @@ for (const file of eventFiles) {
 	}
 }
 
-if(process.env.START_BOT==='true')
+if(config.startBot==='true')
 {
 	console.log("STARTING BOT");
 	client.login(token);

@@ -1,7 +1,8 @@
 const { deployCommands } = require('./deploy-utils');
 
-const token = process.env.DISCORD_TOKEN;
-const clientId = process.env.CLIENT_ID;
+const config = require('./config.js');
+const token = config.discordToken;
+const clientId = config.clientId;
 
 (async () => {
 	try {

@@ -6,7 +6,8 @@
   "scripts": {
     "start": "dotenvx run -- node index.js",
     "deploy-commands": "dotenvx run -- node deploy-commands.js",
-    "delete-commands": "dotenvx run -- node delete-commands.js"
+    "delete-commands": "dotenvx run -- node delete-commands.js",
+    "start-server": "dotenvx run -- node server.js"
   },
   "repository": {
     "type": "git",
@@ -26,7 +27,9 @@
   "dependencies": {
     "axios": "^1.7.7",
     "dayjs": "^1.11.13",
-    "discord.js": "^14.16.3"
+    "discord.js": "^14.16.3",
+    "passport": "^0.7.0",
+    "passport-google-oauth20": "^2.0.0"
   },
   "devDependencies": {
     "eslint": "^9.12.0"
