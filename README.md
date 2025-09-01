@@ -30,3 +30,6 @@ https://discordjs.guide/
 ## Using dotenvx to Encrypt the `.env` File
 
 [Using dotenvx to Encrypt the `.env` File](doc/dotenvx.md)
+
+
+<!-- Security scan triggered at 2025-09-02 00:27:24 -->
